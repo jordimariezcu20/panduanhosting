@@ -59,7 +59,7 @@ export default config({
     ? {
         kind: 'github',
         repo: {
-          owner: 'jordimariezcurrena',
+          owner: 'jordimariezcu20',
           name: 'panduanhosting',
         },
       }
