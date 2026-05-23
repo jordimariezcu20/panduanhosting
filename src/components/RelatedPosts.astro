@@ -1,0 +1,31 @@
+---
+interface Post {
+  slug: string;
+  title: string;
+  description: string;
+  category: string;
+  publishDate: string;
+}
+interface Props {
+  posts: Post[];
+  currentSlug: string;
+}
+const { posts, currentSlug } = Astro.props;
+const related = posts
+  .filter((p) => p.slug !== currentSlug)
+  .sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime())
+  .slice(0, 3);
+---
+{related.length > 0 && (
+  <section class="mt-12 border-t border-gray-200 pt-8">
+    <h2 class="text-xl font-bold text-gray-800 mb-4">Artikel Terkait</h2>
+    <div class="grid md:grid-cols-3 gap-4">
+      {related.map((p) => (
+        <a href={`/${p.category}/${p.slug}`} class="block border border-gray-200 rounded-lg p-4 hover:border-[#1565C0] hover:shadow-sm transition-all">
+          <p class="font-semibold text-[#1565C0] text-sm line-clamp-2">{p.title}</p>
+          <p class="text-gray-600 text-xs mt-1 line-clamp-2">{p.description}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+)}

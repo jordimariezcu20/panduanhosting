@@ -1,0 +1,171 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import BreadcrumbNav from '../components/BreadcrumbNav.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+import ArticleSchema from '../components/ArticleSchema.astro';
+import StickyMobileCTA from '../components/StickyMobileCTA.astro';
+import RelatedPosts from '../components/RelatedPosts.astro';
+
+interface AffiliateLink {
+  name: string;
+  url: string;
+  cta: string;
+}
+interface RelatedPost {
+  slug: string;
+  title: string;
+  description: string;
+  category: string;
+  publishDate: string;
+}
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+interface Props {
+  title: string;
+  description: string;
+  publishDate: string;
+  lastUpdated: string;
+  author: string;
+  category: string;
+  keyword: string;
+  schema: string;
+  featuredImage?: string;
+  affiliateLinks?: AffiliateLink[];
+  relatedPosts?: RelatedPost[];
+  headings?: Heading[];
+  currentSlug: string;
+  rating?: number;
+}
+
+const {
+  title,
+  description,
+  publishDate,
+  lastUpdated,
+  author,
+  category,
+  keyword,
+  schema,
+  featuredImage,
+  affiliateLinks = [],
+  relatedPosts = [],
+  headings = [],
+  currentSlug,
+  rating,
+} = Astro.props;
+
+const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://panduanhosting.id';
+const articleUrl = `/${category}/${currentSlug}`;
+const fullUrl = `${siteUrl}${articleUrl}`;
+
+const siloLabels: Record<string, string> = {
+  panduan: 'Panduan',
+  tutorial: 'Tutorial',
+  rekomendasi: 'Rekomendasi',
+  review: 'Review',
+  perbandingan: 'Perbandingan',
+  promo: 'Promo',
+};
+
+const formattedDate = new Date(lastUpdated).toLocaleDateString('id-ID', {
+  year: 'numeric',
+  month: 'long',
+});
+
+const primaryAffiliate = affiliateLinks[0];
+---
+<BaseLayout
+  title={`${title} | PanduanHosting.id`}
+  description={description}
+  canonical={articleUrl}
+  ogImage={featuredImage}
+  ogType="article"
+>
+  <ArticleSchema
+    schema={schema}
+    title={title}
+    description={description}
+    url={fullUrl}
+    publishDate={publishDate}
+    lastUpdated={lastUpdated}
+    author={author}
+    image={featuredImage}
+    rating={rating}
+  />
+
+  <div class="max-w-5xl mx-auto px-4 py-8">
+    <BreadcrumbNav
+      crumbs={[
+        { label: 'Beranda', href: '/' },
+        { label: siloLabels[category] ?? category, href: `/${category}` },
+        { label: title },
+      ]}
+    />
+
+    <div class="lg:grid lg:grid-cols-[1fr_280px] lg:gap-10">
+      <article class="max-w-[768px]">
+        {affiliateLinks.length > 0 && (
+          <div class="text-xs text-gray-500 bg-gray-50 border border-gray-200 rounded px-3 py-2 mb-4">
+            Artikel ini mengandung tautan afiliasi. Kami mungkin mendapat komisi jika kamu melakukan pembelian melalui tautan kami.
+          </div>
+        )}
+
+        <header class="mb-6">
+          <span class="inline-block bg-[#1565C0]/10 text-[#1565C0] text-xs font-semibold px-2 py-1 rounded mb-3">
+            {siloLabels[category] ?? category}
+          </span>
+          <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3 leading-tight">{title}</h1>
+          <div class="flex flex-wrap items-center gap-4 text-sm text-gray-500">
+            <span>✍ {author}</span>
+            <span>🔄 Diperbarui {formattedDate}</span>
+          </div>
+        </header>
+
+        <TableOfContents headings={headings} />
+
+        <div class="prose prose-lg max-w-none
+          prose-headings:font-bold prose-headings:text-gray-900
+          prose-h2:text-xl prose-h2:mt-8 prose-h2:mb-4
+          prose-h3:text-lg prose-h3:mt-6 prose-h3:mb-3
+          prose-a:text-[#1565C0] prose-a:no-underline hover:prose-a:underline
+          prose-img:rounded-lg prose-img:shadow-sm
+          prose-table:text-sm prose-th:bg-[#1565C0] prose-th:text-white">
+          <slot />
+        </div>
+
+        <RelatedPosts posts={relatedPosts} currentSlug={currentSlug} />
+      </article>
+
+      <aside class="hidden lg:block">
+        <div class="sticky top-24 space-y-6">
+          <TableOfContents headings={headings} />
+          {primaryAffiliate && (
+            <div class="border border-gray-200 rounded-lg p-4 text-center">
+              <p class="text-sm font-semibold text-gray-700 mb-3">Hosting Rekomendasi</p>
+              <a
+                href={`${primaryAffiliate.url}?utm_source=panduanhosting.id&utm_medium=affiliate&utm_campaign=${category}-sidebar`}
+                rel="nofollow noopener sponsored"
+                target="_blank"
+                class="block bg-[#2E7D32] hover:bg-[#1B5E20] text-white font-semibold px-4 py-3 rounded-lg transition-colors text-sm"
+              >
+                {primaryAffiliate.cta} →
+              </a>
+            </div>
+          )}
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  {primaryAffiliate && (
+    <StickyMobileCTA
+      url={primaryAffiliate.url}
+      text={primaryAffiliate.cta}
+      provider={primaryAffiliate.name}
+      silo={category}
+    />
+  )}
+</BaseLayout>

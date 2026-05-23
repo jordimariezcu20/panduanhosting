@@ -1,0 +1,32 @@
+{
+  "niagahoster": {
+    "url": "https://www.niagahoster.co.id/",
+    "name": "Niagahoster",
+    "defaultCta": "Coba Sekarang"
+  },
+  "hostinger": {
+    "url": "https://www.hostinger.co.id/",
+    "name": "Hostinger",
+    "defaultCta": "Lihat Harga"
+  },
+  "dewaweb": {
+    "url": "https://www.dewaweb.com/",
+    "name": "Dewaweb",
+    "defaultCta": "Mulai Sekarang"
+  },
+  "wpengine": {
+    "url": "https://wpengine.com/",
+    "name": "WP Engine",
+    "defaultCta": "Coba WP Engine"
+  },
+  "cloudways": {
+    "url": "https://www.cloudways.com/",
+    "name": "Cloudways",
+    "defaultCta": "Coba Gratis"
+  },
+  "rumahweb": {
+    "url": "https://www.rumahweb.com/",
+    "name": "Rumahweb",
+    "defaultCta": "Lihat Paket"
+  }
+}

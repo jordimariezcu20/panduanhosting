@@ -1,0 +1,43 @@
+---
+export const prerender = true;
+import { getCollection, render } from 'astro:content';
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('tutorial');
+  return entries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content, headings } = await render(entry);
+const { title, description, publishDate, lastUpdated, author, category, keyword, schema, featuredImage, affiliateLinks } = entry.data;
+
+const allEntries = await getCollection('tutorial');
+const relatedPosts = allEntries.map((e) => ({
+  slug: e.slug,
+  title: e.data.title,
+  description: e.data.description,
+  category: e.data.category,
+  publishDate: e.data.publishDate ?? '',
+}));
+---
+<ArticleLayout
+  title={title}
+  description={description}
+  publishDate={publishDate ?? ''}
+  lastUpdated={lastUpdated ?? ''}
+  author={author}
+  category={category}
+  keyword={keyword}
+  schema={schema}
+  featuredImage={featuredImage?.src}
+  affiliateLinks={affiliateLinks}
+  relatedPosts={relatedPosts}
+  headings={headings}
+  currentSlug={entry.slug}
+>
+  <Content />
+</ArticleLayout>

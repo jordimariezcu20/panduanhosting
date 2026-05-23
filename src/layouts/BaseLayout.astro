@@ -1,0 +1,112 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+  ogType?: string;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  ogImage = '/images/og-default.png',
+  ogType = 'website',
+  noindex = false,
+} = Astro.props;
+
+const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://panduanhosting.id';
+const canonicalUrl = canonical ? `${siteUrl}${canonical}` : `${siteUrl}${Astro.url.pathname}`;
+const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
+---
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:site_name" content="PanduanHosting.id" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+  </head>
+  <body class="font-sans text-gray-800 bg-white">
+    <header class="border-b border-gray-200 sticky top-0 z-40 bg-white/95 backdrop-blur-sm">
+      <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
+        <a href="/" class="font-bold text-[#1565C0] text-lg">
+          PanduanHosting<span class="text-gray-500">.id</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-6 text-sm">
+          <a href="/panduan" class="hover:text-[#1565C0]">Panduan</a>
+          <a href="/tutorial" class="hover:text-[#1565C0]">Tutorial</a>
+          <a href="/rekomendasi" class="hover:text-[#1565C0]">Rekomendasi</a>
+          <a href="/review" class="hover:text-[#1565C0]">Review</a>
+          <a href="/perbandingan" class="hover:text-[#1565C0]">Perbandingan</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="border-t border-gray-200 mt-16 py-8 text-sm text-gray-500">
+      <div class="max-w-5xl mx-auto px-4">
+        <div class="grid md:grid-cols-3 gap-6 mb-6">
+          <div>
+            <p class="font-semibold text-gray-700 mb-2">PanduanHosting.id</p>
+            <p>Panduan hosting web terpercaya untuk pengguna Indonesia.</p>
+          </div>
+          <div>
+            <p class="font-semibold text-gray-700 mb-2">Tautan</p>
+            <ul class="space-y-1">
+              <li><a href="/tentang-kami" class="hover:text-[#1565C0]">Tentang Kami</a></li>
+              <li><a href="/kebijakan-privasi" class="hover:text-[#1565C0]">Kebijakan Privasi</a></li>
+              <li><a href="/pengungkapan-afiliasi" class="hover:text-[#1565C0]">Pengungkapan Afiliasi</a></li>
+              <li><a href="/hubungi-kami" class="hover:text-[#1565C0]">Hubungi Kami</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="font-semibold text-gray-700 mb-2">Kategori</p>
+            <ul class="space-y-1">
+              <li><a href="/panduan" class="hover:text-[#1565C0]">Panduan</a></li>
+              <li><a href="/tutorial" class="hover:text-[#1565C0]">Tutorial</a></li>
+              <li><a href="/rekomendasi" class="hover:text-[#1565C0]">Rekomendasi</a></li>
+              <li><a href="/review" class="hover:text-[#1565C0]">Review</a></li>
+            </ul>
+          </div>
+        </div>
+        <p class="text-center text-xs border-t border-gray-100 pt-4">
+          © {new Date().getFullYear()} PanduanHosting.id · Situs ini mengandung tautan afiliasi.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

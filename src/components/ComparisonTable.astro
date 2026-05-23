@@ -1,0 +1,51 @@
+---
+interface Provider {
+  name: string;
+  price: string;
+  uptime: string;
+  storage: string;
+  support: string;
+  url: string;
+  cta: string;
+}
+interface Props {
+  providers: Provider[];
+  silo?: string;
+}
+const { providers, silo = 'general' } = Astro.props;
+---
+<div class="overflow-x-auto my-6">
+  <table class="w-full border-collapse text-sm">
+    <thead>
+      <tr class="bg-[#1565C0] text-white">
+        <th class="px-4 py-3 text-left">Hosting</th>
+        <th class="px-4 py-3 text-left">Harga/Bln</th>
+        <th class="px-4 py-3 text-left">Uptime</th>
+        <th class="px-4 py-3 text-left">Storage</th>
+        <th class="px-4 py-3 text-left">Dukungan</th>
+        <th class="px-4 py-3 text-center">Aksi</th>
+      </tr>
+    </thead>
+    <tbody>
+      {providers.map((p, i) => (
+        <tr class={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+          <td class="px-4 py-3 font-semibold">{p.name}</td>
+          <td class="px-4 py-3">{p.price}</td>
+          <td class="px-4 py-3">{p.uptime}</td>
+          <td class="px-4 py-3">{p.storage}</td>
+          <td class="px-4 py-3">{p.support}</td>
+          <td class="px-4 py-3 text-center">
+            <a
+              href={`${p.url}?utm_source=panduanhosting.id&utm_medium=affiliate&utm_campaign=${silo}`}
+              rel="nofollow noopener sponsored"
+              target="_blank"
+              class="inline-block bg-[#2E7D32] hover:bg-[#1B5E20] text-white text-xs font-semibold px-4 py-2 rounded transition-colors"
+            >
+              {p.cta}
+            </a>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

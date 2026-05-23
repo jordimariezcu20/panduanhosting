@@ -1,0 +1,19 @@
+---
+interface Props {
+  url: string;
+  text: string;
+  provider: string;
+  silo?: string;
+}
+const { url, text, provider, silo = 'general' } = Astro.props;
+const utmUrl = `${url}?utm_source=panduanhosting.id&utm_medium=affiliate&utm_campaign=${silo}`;
+---
+<a
+  href={utmUrl}
+  rel="nofollow noopener sponsored"
+  target="_blank"
+  class="inline-block bg-[#2E7D32] hover:bg-[#1B5E20] text-white font-semibold px-6 py-3 rounded-lg transition-colors duration-200 text-center"
+  data-provider={provider}
+>
+  {text}
+</a>

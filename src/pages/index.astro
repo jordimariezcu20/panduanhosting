@@ -1,17 +1,82 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
 
+const silos = ['panduan', 'tutorial', 'rekomendasi', 'review', 'perbandingan', 'promo'] as const;
+const allPosts = (
+  await Promise.all(silos.map((s) => getCollection(s)))
+).flat()
+  .sort((a, b) =>
+    new Date(b.data.lastUpdated ?? b.data.publishDate ?? '').getTime() -
+    new Date(a.data.lastUpdated ?? a.data.publishDate ?? '').getTime()
+  )
+  .slice(0, 6);
+
+const topHosting = [
+  { name: 'Niagahoster', desc: 'Hosting terbaik untuk pemula di Indonesia', url: '/go/niagahoster', cta: 'Coba Sekarang' },
+  { name: 'Hostinger', desc: 'Harga terjangkau dengan performa tinggi', url: '/go/hostinger', cta: 'Lihat Harga' },
+  { name: 'Dewaweb', desc: 'Cloud hosting lokal dengan SLA 99.9%', url: '/go/dewaweb', cta: 'Mulai Sekarang' },
+];
 ---
+<BaseLayout
+  title="PanduanHosting.id — Panduan Hosting Web Terpercaya Indonesia"
+  description="Panduan lengkap memilih hosting web terbaik di Indonesia. Review jujur, perbandingan harga, dan tutorial cara membuat website untuk pemula."
+  canonical="/"
+>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'PanduanHosting.id',
+    url: 'https://panduanhosting.id',
+    description: 'Panduan hosting web terpercaya untuk pengguna Indonesia',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: { '@type': 'EntryPoint', urlTemplate: 'https://panduanhosting.id/?q={search_term_string}' },
+      'query-input': 'required name=search_term_string',
+    },
+  })} />
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+  <section class="bg-[#1565C0] text-white py-16">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      <h1 class="text-3xl md:text-4xl font-bold mb-4">
+        Panduan Hosting Web<br />Terpercaya untuk Indonesia
+      </h1>
+      <p class="text-blue-100 text-lg mb-6">
+        Review jujur, perbandingan harga, dan tutorial lengkap untuk membantu kamu memilih hosting terbaik.
+      </p>
+      <a href="/rekomendasi" class="inline-block bg-[#2E7D32] hover:bg-[#1B5E20] text-white font-semibold px-8 py-3 rounded-lg transition-colors">
+        Lihat Rekomendasi Hosting
+      </a>
+    </div>
+  </section>
+
+  <section class="max-w-5xl mx-auto px-4 py-12">
+    <h2 class="text-xl font-bold text-gray-800 mb-6 text-center">Top 3 Hosting Rekomendasi Kami</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      {topHosting.map((h) => (
+        <div class="border border-gray-200 rounded-xl p-6 text-center hover:border-[#1565C0] hover:shadow-md transition-all">
+          <h3 class="font-bold text-lg text-[#1565C0] mb-2">{h.name}</h3>
+          <p class="text-gray-600 text-sm mb-4">{h.desc}</p>
+          <a href={h.url} rel="nofollow noopener sponsored" class="inline-block bg-[#2E7D32] hover:bg-[#1B5E20] text-white font-semibold px-5 py-2 rounded-lg text-sm transition-colors">
+            {h.cta}
+          </a>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  {allPosts.length > 0 && (
+    <section class="max-w-5xl mx-auto px-4 pb-12">
+      <h2 class="text-xl font-bold text-gray-800 mb-6">Artikel Terbaru</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        {allPosts.map((post) => (
+          <a href={`/${post.data.category}/${post.slug}`} class="block border border-gray-200 rounded-lg p-4 hover:border-[#1565C0] hover:shadow-sm transition-all">
+            <span class="inline-block text-xs bg-[#1565C0]/10 text-[#1565C0] font-semibold px-2 py-0.5 rounded mb-2">{post.data.category}</span>
+            <h3 class="font-semibold text-gray-800 text-sm line-clamp-2">{post.data.title}</h3>
+            <p class="text-gray-500 text-xs mt-1 line-clamp-2">{post.data.description}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
+</BaseLayout>

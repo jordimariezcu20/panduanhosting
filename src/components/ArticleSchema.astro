@@ -1,0 +1,46 @@
+---
+interface Props {
+  schema: string;
+  title: string;
+  description: string;
+  url: string;
+  publishDate: string;
+  lastUpdated: string;
+  author: string;
+  image?: string;
+  rating?: number;
+}
+const { schema, title, description, url, publishDate, lastUpdated, author, image, rating } = Astro.props;
+const siteUrl = 'https://panduanhosting.id';
+
+const baseSchema = {
+  '@context': 'https://schema.org',
+  name: title,
+  description,
+  url,
+  datePublished: publishDate,
+  dateModified: lastUpdated,
+  author: { '@type': 'Person', name: author },
+  publisher: {
+    '@type': 'Organization',
+    name: 'PanduanHosting.id',
+    url: siteUrl,
+  },
+  ...(image ? { image: `${siteUrl}${image}` } : {}),
+};
+
+const schemaMap: Record<string, object> = {
+  Article: { '@type': 'Article', ...baseSchema },
+  ItemList: { '@type': 'ItemList', ...baseSchema },
+  HowTo: { '@type': 'HowTo', ...baseSchema },
+  Review: {
+    '@type': 'Review',
+    ...baseSchema,
+    ...(rating ? { reviewRating: { '@type': 'Rating', ratingValue: rating, bestRating: 10 } } : {}),
+  },
+  FAQPage: { '@type': 'FAQPage', ...baseSchema },
+};
+
+const jsonLd = schemaMap[schema] ?? schemaMap['Article'];
+---
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
