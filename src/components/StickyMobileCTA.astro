@@ -10,6 +10,7 @@ const utmUrl = `${url}?utm_source=panduanhosting.id&utm_medium=affiliate&utm_cam
 ---
 <div
   id="sticky-cta"
+  data-track-position="sticky-mobile"
   class="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-white border-t border-gray-200 px-4 py-3 flex items-center gap-3 shadow-lg"
 >
   <a
@@ -17,6 +18,10 @@ const utmUrl = `${url}?utm_source=panduanhosting.id&utm_medium=affiliate&utm_cam
     rel="nofollow noopener sponsored"
     target="_blank"
     class="flex-1 bg-[#2E7D32] hover:bg-[#1B5E20] text-white font-semibold py-3 rounded-lg text-center text-sm transition-colors"
+    data-umami-event="affiliate-click"
+    data-umami-event-provider={provider.toLowerCase()}
+    data-umami-event-position="sticky-mobile"
+    data-umami-event-silo={silo}
   >
     {text}
   </a>
@@ -24,6 +29,8 @@ const utmUrl = `${url}?utm_source=panduanhosting.id&utm_medium=affiliate&utm_cam
     id="sticky-cta-dismiss"
     aria-label="Tutup"
     class="text-gray-400 hover:text-gray-600 p-1 text-xl leading-none"
+    data-umami-event="cta-dismiss"
+    data-umami-event-provider={provider.toLowerCase()}
   >
     ✕
   </button>

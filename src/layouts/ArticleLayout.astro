@@ -143,13 +143,17 @@ const primaryAffiliate = affiliateLinks[0];
         <div class="sticky top-24 space-y-6">
           <TableOfContents headings={headings} />
           {primaryAffiliate && (
-            <div class="border border-gray-200 rounded-lg p-4 text-center">
+            <div class="border border-gray-200 rounded-lg p-4 text-center" data-track-position="sidebar">
               <p class="text-sm font-semibold text-gray-700 mb-3">Hosting Rekomendasi</p>
               <a
                 href={`${primaryAffiliate.url}?utm_source=panduanhosting.id&utm_medium=affiliate&utm_campaign=${category}-sidebar`}
                 rel="nofollow noopener sponsored"
                 target="_blank"
                 class="block bg-[#2E7D32] hover:bg-[#1B5E20] text-white font-semibold px-4 py-3 rounded-lg transition-colors text-sm"
+                data-umami-event="affiliate-click"
+                data-umami-event-provider={primaryAffiliate.name.toLowerCase()}
+                data-umami-event-position="sidebar"
+                data-umami-event-silo={category}
               >
                 {primaryAffiliate.cta} →
               </a>
@@ -169,3 +173,47 @@ const primaryAffiliate = affiliateLinks[0];
     />
   )}
 </BaseLayout>
+
+<script define:vars={{ category, currentSlug }}>
+  // ── Scroll depth tracking ──────────────────────────────────────────
+  const DEPTHS = [25, 50, 75, 90];
+  const reached = new Set();
+
+  function checkScrollDepth() {
+    const scrolled = window.scrollY + window.innerHeight;
+    const total = document.documentElement.scrollHeight;
+    const pct = Math.min(100, Math.round((scrolled / total) * 100));
+    DEPTHS.forEach((d) => {
+      if (pct >= d && !reached.has(d)) {
+        reached.add(d);
+        window.umami?.track('scroll-depth', {
+          depth: d + '%',
+          category,
+          slug: currentSlug,
+        });
+      }
+    });
+  }
+
+  window.addEventListener('scroll', checkScrollDepth, { passive: true });
+
+  // ── TOC link clicks ────────────────────────────────────────────────
+  document.querySelectorAll('[data-toc] a, nav[aria-label="Daftar isi"] a').forEach((a) => {
+    a.addEventListener('click', () => {
+      window.umami?.track('toc-click', {
+        heading: a.textContent?.trim() ?? '',
+        slug: currentSlug,
+      });
+    });
+  });
+
+  // ── Related post clicks ────────────────────────────────────────────
+  document.querySelectorAll('[data-related-posts] a').forEach((a) => {
+    a.addEventListener('click', () => {
+      window.umami?.track('related-post-click', {
+        target: (a as HTMLAnchorElement).pathname,
+        source: currentSlug,
+      });
+    });
+  });
+</script>

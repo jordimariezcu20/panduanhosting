@@ -44,7 +44,11 @@ const topHosting = [
       <p class="text-blue-100 text-lg mb-6">
         Review jujur, perbandingan harga, dan tutorial lengkap untuk membantu kamu memilih hosting terbaik.
       </p>
-      <a href="/rekomendasi" class="inline-block bg-[#2E7D32] hover:bg-[#1B5E20] text-white font-semibold px-8 py-3 rounded-lg transition-colors">
+      <a
+        href="/rekomendasi"
+        class="inline-block bg-[#2E7D32] hover:bg-[#1B5E20] text-white font-semibold px-8 py-3 rounded-lg transition-colors"
+        data-umami-event="hero-cta-click"
+      >
         Lihat Rekomendasi Hosting
       </a>
     </div>
@@ -57,7 +61,14 @@ const topHosting = [
         <div class="border border-gray-200 rounded-xl p-6 text-center hover:border-[#1565C0] hover:shadow-md transition-all">
           <h3 class="font-bold text-lg text-[#1565C0] mb-2">{h.name}</h3>
           <p class="text-gray-600 text-sm mb-4">{h.desc}</p>
-          <a href={h.url} rel="nofollow noopener sponsored" class="inline-block bg-[#2E7D32] hover:bg-[#1B5E20] text-white font-semibold px-5 py-2 rounded-lg text-sm transition-colors">
+          <a
+            href={h.url}
+            rel="nofollow noopener sponsored"
+            class="inline-block bg-[#2E7D32] hover:bg-[#1B5E20] text-white font-semibold px-5 py-2 rounded-lg text-sm transition-colors"
+            data-umami-event="affiliate-click"
+            data-umami-event-provider={h.name.toLowerCase()}
+            data-umami-event-position="homepage-card"
+          >
             {h.cta}
           </a>
         </div>
@@ -70,7 +81,13 @@ const topHosting = [
       <h2 class="text-xl font-bold text-gray-800 mb-6">Artikel Terbaru</h2>
       <div class="grid md:grid-cols-3 gap-6">
         {allPosts.map((post) => (
-          <a href={`/${post.data.category}/${post.slug}`} class="block border border-gray-200 rounded-lg p-4 hover:border-[#1565C0] hover:shadow-sm transition-all">
+          <a
+            href={`/${post.data.category}/${post.slug}`}
+            class="block border border-gray-200 rounded-lg p-4 hover:border-[#1565C0] hover:shadow-sm transition-all"
+            data-umami-event="homepage-article-click"
+            data-umami-event-slug={post.slug}
+            data-umami-event-category={post.data.category}
+          >
             <span class="inline-block text-xs bg-[#1565C0]/10 text-[#1565C0] font-semibold px-2 py-0.5 rounded mb-2">{post.data.category}</span>
             <h3 class="font-semibold text-gray-800 text-sm line-clamp-2">{post.data.title}</h3>
             <p class="text-gray-500 text-xs mt-1 line-clamp-2">{post.data.description}</p>
