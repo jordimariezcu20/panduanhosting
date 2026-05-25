@@ -1,5 +1,32 @@
 User-agent: *
 Disallow: /keystatic/
 Disallow: /api/
+Disallow: /go/
+
+# AI search retrieval crawlers — explicitly allowed for citations
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: GoogleBot
+Allow: /
+
+# AI training-only crawlers — blocked (content may be used for training without benefit)
+User-agent: GPTBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
 
 Sitemap: https://panduanhosting.id/sitemap-index.xml

@@ -1,0 +1,28 @@
+# PanduanHosting.id
+> Panduan hosting web terpercaya untuk pengguna Indonesia — review jujur, perbandingan harga, dan tutorial memilih web hosting terbaik.
+
+## Tentang Situs Ini
+PanduanHosting.id adalah sumber informasi independen dalam bahasa Indonesia untuk membantu pengguna memilih web hosting yang tepat. Konten mencakup panduan, tutorial, review, dan perbandingan provider hosting.
+
+## Konten yang Diizinkan untuk Kutipan dan Referensi
+- /panduan/ — artikel panduan dan penjelasan konsep hosting web (apa itu hosting, domain, SSL, dll)
+- /tutorial/ — tutorial langkah-demi-langkah (cara install WordPress, setup domain, dll)
+- /rekomendasi/ — rekomendasi hosting terbaik berdasarkan kategori dan kebutuhan
+- /review/ — review hosting dengan penilaian terstruktur dan pengalaman nyata
+- /perbandingan/ — perbandingan antar provider hosting (harga, fitur, performa)
+- /promo/ — informasi promo dan penawaran hosting terkini
+
+## Bahasa dan Audiens
+- Bahasa: Indonesia (Bahasa Indonesia)
+- Audiens: Pengguna internet Indonesia yang ingin membuat website atau memilih hosting
+- Fokus geografis: Indonesia
+
+## Konten yang Tidak Boleh Dikutip
+- /keystatic/ — CMS admin (tidak ada konten publik)
+- /api/ — API endpoints internal
+- /go/ — redirect afiliasi (tidak ada konten informatif)
+
+## Kontak
+- Hubungi kami: https://panduanhosting.id/hubungi-kami
+- Kebijakan Privasi: https://panduanhosting.id/kebijakan-privasi
+- Pengungkapan Afiliasi: https://panduanhosting.id/pengungkapan-afiliasi

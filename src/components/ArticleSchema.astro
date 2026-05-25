@@ -9,15 +9,19 @@ interface Props {
   author: string;
   image?: string;
   rating?: number;
+  reviewTarget?: string; // name of the product/service being reviewed
 }
-const { schema, title, description, url, publishDate, lastUpdated, author, image, rating } = Astro.props;
+const { schema, title, description, url, publishDate, lastUpdated, author, image, rating, reviewTarget } = Astro.props;
 const siteUrl = 'https://panduanhosting.id';
+const logoUrl = `${siteUrl}/favicon.svg`;
 
 const baseSchema = {
   '@context': 'https://schema.org',
-  name: title,
+  headline: title,
   description,
   url,
+  inLanguage: 'id',
+  mainEntityOfPage: { '@type': 'WebPage', '@id': url },
   datePublished: publishDate,
   dateModified: lastUpdated,
   author: { '@type': 'Person', name: author },
@@ -25,8 +29,9 @@ const baseSchema = {
     '@type': 'Organization',
     name: 'PanduanHosting.id',
     url: siteUrl,
+    logo: { '@type': 'ImageObject', url: logoUrl },
   },
-  ...(image ? { image: `${siteUrl}${image}` } : {}),
+  ...(image ? { image: { '@type': 'ImageObject', url: `${siteUrl}${image}` } } : {}),
 };
 
 const schemaMap: Record<string, object> = {
@@ -36,7 +41,19 @@ const schemaMap: Record<string, object> = {
   Review: {
     '@type': 'Review',
     ...baseSchema,
-    ...(rating ? { reviewRating: { '@type': 'Rating', ratingValue: rating, bestRating: 10 } } : {}),
+    itemReviewed: {
+      '@type': 'SoftwareApplication',
+      name: reviewTarget ?? title.replace(/^Review\s+/i, ''),
+      applicationCategory: 'WebApplication',
+    },
+    ...(rating ? {
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: rating,
+        bestRating: 5,
+        worstRating: 1,
+      }
+    } : {}),
   },
   FAQPage: { '@type': 'FAQPage', ...baseSchema },
 };
