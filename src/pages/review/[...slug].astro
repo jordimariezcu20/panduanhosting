@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content, headings } = await render(entry);
-const { title, description, publishDate, lastUpdated, author, category, keyword, schema, featuredImage, affiliateLinks } = entry.data;
+const { title, description, publishDate, lastUpdated, author, category, keyword, schema, featuredImage, affiliateLinks, rating } = entry.data;
 
 const allEntries = await getCollection('review');
 const relatedPosts = allEntries.map((e) => ({
@@ -38,6 +38,7 @@ const relatedPosts = allEntries.map((e) => ({
   relatedPosts={relatedPosts}
   headings={headings}
   currentSlug={entry.slug}
+  rating={rating}
 >
   <Content />
 </ArticleLayout>

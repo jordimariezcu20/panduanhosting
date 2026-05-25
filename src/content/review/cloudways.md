@@ -10,6 +10,7 @@ keyword: "review cloudways"
 volume: 1300
 kd: 20
 schema: "Review"
+rating: 4.0
 affiliateLinks:
   - name: "Niagahoster"
     url: "/go/niagahoster"

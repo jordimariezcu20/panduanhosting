@@ -10,6 +10,7 @@ keyword: "review dewaweb"
 volume: 1600
 kd: 22
 schema: "Review"
+rating: 4.3
 affiliateLinks:
   - name: "Dewaweb"
     url: "/go/dewaweb"

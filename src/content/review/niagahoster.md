@@ -10,6 +10,7 @@ keyword: "review niagahoster"
 volume: 2900
 kd: 30
 schema: "Review"
+rating: 4.5
 affiliateLinks:
   - name: "Niagahoster"
     url: "/go/niagahoster"

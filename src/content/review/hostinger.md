@@ -10,6 +10,7 @@ keyword: "review hostinger indonesia"
 volume: 3600
 kd: 30
 schema: "Review"
+rating: 4.3
 affiliateLinks:
   - name: "Hostinger"
     url: "/go/hostinger"

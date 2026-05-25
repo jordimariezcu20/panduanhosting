@@ -18,6 +18,7 @@ const articleCollection = defineCollection({
       schema: z
         .enum(['Article', 'ItemList', 'HowTo', 'Review', 'FAQPage'])
         .default('Article'),
+      rating: z.number().min(1).max(5).optional(),
       affiliateLinks: z
         .array(
           z.object({

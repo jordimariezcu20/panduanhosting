@@ -3,6 +3,16 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "regions": ["sin1"],
+  "redirects": [
+    { "source": "/review/review-niagahoster", "destination": "/review/niagahoster", "permanent": true },
+    { "source": "/review/review-hostinger-indonesia", "destination": "/review/hostinger", "permanent": true },
+    { "source": "/review/review-dewaweb", "destination": "/review/dewaweb", "permanent": true },
+    { "source": "/review/review-cloudways", "destination": "/review/cloudways", "permanent": true },
+    { "source": "/review/review-domainesia", "destination": "/review/domainesia", "permanent": true },
+    { "source": "/promo/promo-niagahoster", "destination": "/promo/niagahoster", "permanent": true },
+    { "source": "/promo/promo-hostinger", "destination": "/promo/hostinger", "permanent": true },
+    { "source": "/promo/promo-dewaweb", "destination": "/promo/dewaweb", "permanent": true }
+  ],
   "headers": [
     {
       "source": "/_astro/(.*)",
@@ -18,7 +28,8 @@
         { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
         { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" },
         { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=(), payment=(), usb=()" },
-        { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://umami-production-c3fa.up.railway.app; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://umami-production-c3fa.up.railway.app; frame-ancestors 'none';" }
+        { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://umami-production-c3fa.up.railway.app; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://umami-production-c3fa.up.railway.app; frame-ancestors 'none';" },
+        { "key": "X-IndexNow-Key", "value": "53085a97cc1ce5ff67c6e250006f11ed" }
       ]
     }
   ]

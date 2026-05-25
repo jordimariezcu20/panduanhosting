@@ -10,6 +10,7 @@ keyword: "review domainesia"
 volume: 1600
 kd: 18
 schema: "Review"
+rating: 3.6
 affiliateLinks:
   - name: "Niagahoster"
     url: "/go/niagahoster"
