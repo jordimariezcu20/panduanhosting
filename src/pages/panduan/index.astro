@@ -9,13 +9,22 @@ const entries = (await getCollection('panduan')).sort(
 );
 ---
 <BaseLayout
-  title="Panduan Hosting | PanduanHosting.id"
-  description="Kumpulan panduan lengkap memilih dan menggunakan hosting web terbaik di Indonesia."
+  title="Panduan Hosting Web Indonesia — Dari Pemula hingga Profesional"
+  description="Panduan lengkap seputar hosting web untuk pengguna Indonesia: apa itu hosting, cara memilih, cara daftar, dan cara mengelola website. Cocok untuk pemula yang baru mulai."
   canonical="/panduan"
 >
   <main class="max-w-5xl mx-auto px-4 py-12">
-    <h1 class="text-3xl font-bold text-gray-800 mb-2">Panduan Hosting</h1>
-    <p class="text-gray-500 mb-8">Artikel panduan informatif seputar hosting web untuk pemula hingga profesional.</p>
+    <h1 class="text-3xl font-bold text-gray-800 mb-2">Panduan Hosting Web</h1>
+    <p class="text-gray-600 mb-4 max-w-2xl">
+      Kumpulan panduan hosting web lengkap dalam bahasa Indonesia — mulai dari penjelasan dasar seperti
+      <a href="/panduan/hosting-adalah" class="text-[#1565C0] hover:underline">apa itu hosting</a> dan
+      <a href="/panduan/domain-adalah" class="text-[#1565C0] hover:underline">apa itu domain</a>,
+      hingga panduan praktis seperti
+      <a href="/panduan/cara-daftar-hostinger" class="text-[#1565C0] hover:underline">cara daftar Hostinger</a> dan
+      <a href="/panduan/cara-daftar-niagahoster" class="text-[#1565C0] hover:underline">cara daftar Niagahoster</a>.
+      Semua artikel ditulis khusus untuk pengguna Indonesia, dari pemula yang baru pertama kali membuat website hingga pemilik bisnis yang ingin meningkatkan performa online.
+    </p>
+    <p class="text-gray-500 text-sm mb-8">{entries.length} panduan tersedia · Diperbarui secara berkala</p>
 
     {entries.length === 0 ? (
       <p class="text-gray-400 text-center py-16">Belum ada artikel. Segera hadir!</p>
