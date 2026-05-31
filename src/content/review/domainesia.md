@@ -12,6 +12,9 @@ kd: 18
 schema: "Review"
 rating: 3.6
 affiliateLinks:
+  - name: "Domainesia"
+    url: "/go/domainesia"
+    cta: "Coba Domainesia"
   - name: "Niagahoster"
     url: "/go/niagahoster"
     cta: "Bandingkan: Niagahoster"

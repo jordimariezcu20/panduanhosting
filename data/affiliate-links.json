@@ -28,5 +28,10 @@
     "url": "https://www.rumahweb.com/",
     "name": "Rumahweb",
     "defaultCta": "Lihat Paket"
+  },
+  "domainesia": {
+    "url": "https://my.domainesia.com/ref.php?u=27023",
+    "name": "Domainesia",
+    "defaultCta": "Coba Domainesia"
   }
 }
