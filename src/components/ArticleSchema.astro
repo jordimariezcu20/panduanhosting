@@ -1,4 +1,8 @@
 ---
+interface FaqItem {
+  question: string;
+  answer: string;
+}
 interface Props {
   schema: string;
   title: string;
@@ -10,8 +14,9 @@ interface Props {
   image?: string;
   rating?: number;
   reviewTarget?: string; // name of the product/service being reviewed
+  faqItems?: FaqItem[];
 }
-const { schema, title, description, url, publishDate, lastUpdated, author, image, rating, reviewTarget } = Astro.props;
+const { schema, title, description, url, publishDate, lastUpdated, author, image, rating, reviewTarget, faqItems = [] } = Astro.props;
 const siteUrl = 'https://panduanhosting.id';
 const logoUrl = `${siteUrl}/favicon.svg`;
 
@@ -55,7 +60,20 @@ const schemaMap: Record<string, object> = {
       }
     } : {}),
   },
-  FAQPage: { '@type': 'FAQPage', ...baseSchema },
+  FAQPage: {
+    '@type': 'FAQPage',
+    ...baseSchema,
+    ...(faqItems.length > 0 ? {
+      mainEntity: faqItems.map((item) => ({
+        '@type': 'Question',
+        name: item.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: item.answer,
+        },
+      })),
+    } : {}),
+  },
 };
 
 const jsonLd = schemaMap[schema] ?? schemaMap['Article'];

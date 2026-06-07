@@ -23,6 +23,10 @@ interface Heading {
   slug: string;
   text: string;
 }
+interface FaqItem {
+  question: string;
+  answer: string;
+}
 interface Props {
   title: string;
   description: string;
@@ -38,6 +42,7 @@ interface Props {
   headings?: Heading[];
   currentSlug: string;
   rating?: number;
+  faqItems?: FaqItem[];
 }
 
 const {
@@ -55,6 +60,7 @@ const {
   headings = [],
   currentSlug,
   rating,
+  faqItems = [],
 } = Astro.props;
 
 const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://panduanhosting.id';
@@ -96,6 +102,7 @@ const primaryAffiliate = affiliateLinks[0];
     author={author}
     image={featuredImage}
     rating={rating}
+    faqItems={faqItems}
   />
 
   <div class="max-w-5xl mx-auto px-4 py-8">

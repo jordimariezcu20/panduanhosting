@@ -29,6 +29,15 @@ const articleCollection = defineCollection({
         )
         .optional()
         .default([]),
+      faqItems: z
+        .array(
+          z.object({
+            question: z.string(),
+            answer: z.string(),
+          })
+        )
+        .optional()
+        .default([]),
     }),
 });
 
