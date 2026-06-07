@@ -77,5 +77,20 @@ const schemaMap: Record<string, object> = {
 };
 
 const jsonLd = schemaMap[schema] ?? schemaMap['Article'];
+
+// If primary schema is not FAQPage but faqItems exist, emit an additional FAQPage block
+const faqJsonLd = schema !== 'FAQPage' && faqItems.length > 0 ? {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.answer,
+    },
+  })),
+} : null;
 ---
 <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+{faqJsonLd && <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />}
