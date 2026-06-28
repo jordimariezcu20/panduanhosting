@@ -2,7 +2,7 @@
 title: "Cara Daftar Hostinger Indonesia 2026: Panduan Lengkap + Tips Dapat Diskon"
 description: "Cara daftar Hostinger Indonesia dalam 10 menit: pilih paket, buat akun, bayar via transfer bank atau e-wallet, dan hosting aktif. Panduan step-by-step untuk pemula + tips hemat."
 publishDate: "2026-05-23"
-lastUpdated: "2026-06-19"
+lastUpdated: "2026-06-28"
 author: "Tim PanduanHosting"
 category: "panduan"
 tags: ["cara daftar hostinger", "daftar hostinger", "beli hosting hostinger", "hostinger indonesia daftar", "cara order hostinger"]
@@ -31,7 +31,7 @@ faqItems:
     answer: "Domain gratis tersedia untuk paket Premium dan Business dengan berlangganan minimal 12 bulan. Saat checkout akan ada opsi mendaftarkan domain gratis. Domain .com, .net, atau .id biasanya tersedia gratis untuk tahun pertama."
 ---
 
-**Daftar Hostinger** bisa diselesaikan dalam **10–15 menit**, mulai dari memilih paket hingga hosting aktif dan siap digunakan. Berikut 9 langkah lengkapnya.
+**Cara daftar dan membeli hosting di Hostinger** bisa diselesaikan dalam **10–15 menit**, mulai dari memilih paket hingga hosting aktif dan siap digunakan. Berikut 9 langkah lengkapnya.
 
 **Ringkasan cara daftar Hostinger:**
 1. Buka hostinger.co.id dan pilih paket hosting
@@ -187,6 +187,28 @@ Jika ingin install WordPress:
    - Email admin
 5. Klik **Install**
 6. Selesai dalam 2–3 menit
+
+## Tips Dapat Diskon Hostinger
+
+Hostinger sering menawarkan diskon besar, terutama untuk pembelian pertama. Berikut cara mendapatkan harga terbaik:
+
+### 1. Pilih Periode Berlangganan Panjang
+Harga per bulan makin murah dengan komitmen lebih panjang:
+- **1 bulan** — harga penuh, tidak direkomendasikan
+- **12 bulan** — lebih hemat, promo standar aktif
+- **48 bulan** — harga per bulan paling murah (hemat hingga 80%)
+
+### 2. Beli Saat Promo Musiman
+Diskon Hostinger paling besar muncul saat:
+- **Harbolnas 11.11 dan 12.12** — diskon hingga 80%
+- **Black Friday / Cyber Monday** (November)
+- **Tahun Baru** (Desember–Januari)
+
+### 3. Masukkan Kode Promo saat Checkout
+Di halaman checkout ada kolom untuk memasukkan **kode promo**. Cek halaman [promo Hostinger](/promo/hostinger) sebelum bayar — sering ada potongan 5–20% tambahan di atas diskon yang sudah ada.
+
+### 4. Mulai dengan Paket Premium
+Paket **Premium** (~2x harga Single) jauh lebih worth it karena sudah include **domain gratis tahun pertama** (.com senilai Rp 150K+) dan unlimited websites. Kalau butuh domain gratis, Premium adalah pilihan lebih hemat dari membeli keduanya terpisah.
 
 ## Cara Update Nameserver untuk Domain Luar
 
