@@ -1,11 +1,11 @@
 ---
-title: "Cara Pasang SSL Gratis di Hosting (Let's Encrypt, 2025)"
-description: "Tutorial lengkap cara pasang SSL gratis di hosting menggunakan Let's Encrypt via cPanel. Website HTTPS dalam 5 menit tanpa biaya, untuk semua jenis hosting."
+title: "Cara Pasang SSL Gratis di Hosting 2026 (Let's Encrypt, 5 Menit)"
+description: "Cara pasang SSL gratis di hosting via cPanel atau hPanel dalam 5 menit — panduan lengkap untuk Niagahoster, Hostinger, dan hosting Indonesia lainnya. HTTPS aktif tanpa biaya."
 publishDate: "2026-05-23"
-lastUpdated: "2026-05-23"
+lastUpdated: "2026-07-19"
 author: "Tim PanduanHosting"
 category: "tutorial"
-tags: ["ssl", "https", "lets encrypt", "cpanel", "keamanan website"]
+tags: ["cara pasang ssl gratis", "ssl gratis hosting", "https gratis", "lets encrypt cpanel", "cara aktifkan ssl", "ssl niagahoster", "ssl hostinger"]
 keyword: "cara pasang ssl gratis"
 volume: 1300
 kd: 15
@@ -13,15 +13,33 @@ schema: "HowTo"
 affiliateLinks:
   - name: "Niagahoster"
     url: "/go/niagahoster"
-    cta: "Coba Sekarang"
+    cta: "Hosting + SSL Gratis Otomatis"
   - name: "Hostinger"
     url: "/go/hostinger"
-    cta: "Lihat Harga"
+    cta: "Hosting + SSL Gratis Otomatis"
+faqItems:
+  - question: "Bagaimana cara pasang SSL gratis di hosting?"
+    answer: "Cara pasang SSL gratis di hosting: (1) Login ke cPanel hosting kamu. (2) Di bagian Security, klik SSL/TLS atau Let's Encrypt SSL. (3) Pilih domain yang ingin dipasangi SSL. (4) Klik Issue atau Install SSL. (5) Tunggu 1–2 menit hingga selesai. (6) Buka website dengan https:// di browser untuk verifikasi. Hosting seperti Niagahoster dan Hostinger mengaktifkan SSL otomatis saat domain terhubung."
+  - question: "Apakah SSL gratis Let's Encrypt aman digunakan?"
+    answer: "Ya, Let's Encrypt sama amannya dengan SSL berbayar untuk enkripsi data — menggunakan standar TLS yang sama. Perbedaannya hanya pada garansi finansial dan validasi organisasi (OV/EV SSL berbayar). Untuk blog, website bisnis, UMKM, dan toko online kebanyakan, Let's Encrypt sudah lebih dari cukup dan diakui semua browser modern."
+  - question: "Berapa lama SSL Let's Encrypt berlaku?"
+    answer: "SSL Let's Encrypt berlaku 90 hari. Namun hosting yang baik (Niagahoster, Hostinger, Dewaweb) memperpanjang SSL otomatis sebelum expired — kamu tidak perlu melakukan apapun. Jika hosting tidak memperpanjang otomatis, kamu perlu install ulang setiap 90 hari."
+  - question: "Website sudah HTTPS tapi masih muncul Not Secure, kenapa?"
+    answer: "Penyebab paling umum: mixed content — beberapa elemen (gambar, script, CSS) masih dimuat via HTTP meskipun SSL sudah terpasang. Solusi untuk WordPress: install plugin Really Simple SSL yang menangani mixed content otomatis. Cek juga di Chrome DevTools (F12 → Console) untuk melihat elemen mana yang masih HTTP."
+  - question: "Apakah SSL gratis memengaruhi kecepatan website?"
+    answer: "Tidak secara signifikan. Ada overhead sangat kecil saat TLS handshake pertama, tapi dengan HTTP/2 yang sudah didukung semua hosting modern, website HTTPS justru bisa lebih cepat dari HTTP. Google juga memberi sedikit keunggulan ranking untuk website HTTPS dibanding HTTP."
 ---
 
-SSL adalah lapisan keamanan yang membuat website kamu menggunakan HTTPS — tanda gembok hijau di browser yang menandakan koneksi terenkripsi dan aman. Kabar baiknya: SSL tidak perlu bayar mahal. **Let's Encrypt** menyediakan SSL gratis yang diakui semua browser modern.
+**Cara pasang SSL gratis — ringkasan 5 langkah:**
+1. Login cPanel → Security → SSL/TLS atau Let's Encrypt
+2. Pilih domain → klik **Issue** atau **Install SSL**
+3. Tunggu 1–2 menit → buka `https://namadomain.com` untuk verifikasi
+4. Aktifkan redirect HTTP→HTTPS (via .htaccess atau plugin Really Simple SSL)
+5. Cek mixed content di Chrome DevTools jika masih ada peringatan
 
-Artikel ini membahas cara pasang SSL gratis di hosting dalam waktu kurang dari 5 menit.
+Di [Niagahoster](/go/niagahoster) dan [Hostinger](/go/hostinger), SSL gratis aktif **otomatis** saat domain terhubung ke hosting.
+
+SSL adalah lapisan keamanan yang membuat website menggunakan HTTPS — tanda gembok di browser yang menandakan koneksi terenkripsi. **Let's Encrypt** menyediakan SSL gratis yang diakui semua browser modern.
 
 ## Mengapa SSL Wajib untuk Website?
 
